@@ -2,5 +2,9 @@ public class Dongeon {
 
   public void playGame()
 
-  int[][] rooms 0 {{0,0},{0,1},{1,0},{1,1}};
+  int[][] rooms = {{0,0},{0,1},{1,0},{1,1}};
   
+public class Room {
+
+public void doNarative(String[] args)
+  int[] doors = {1,2}
