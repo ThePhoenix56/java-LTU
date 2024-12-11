@@ -5,7 +5,7 @@ public class Dungeon {
 
     public void playGame() {
         Room room = new Room(); // Skapar en instance av "Room"
-        room.describeRoom(1); // Nummer 1 används som ett exempel här. Det skickar den över till metoden "describeRoom"
+        room.doNarrative(1); // Nummer 1 används som ett exempel här. Det skickar den över till metoden "doNarrative"
     }
 
     public static void main(String[] args) {
