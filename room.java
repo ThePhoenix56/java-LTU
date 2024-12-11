@@ -1,6 +1,6 @@
 public class Room {
 
-    public void describeRoom(int roomNumber) { // Rumnummer bestäms av en integer
+    public void doNarrative(int roomNumber) { // Rumnummer bestäms av en integer (roomNumber). doNarrative-metoden beskriver rummet och navigerings-möjligheterna
         int[] doors = {1, 2};
 
         switch (roomNumber) {
