@@ -1,5 +1,5 @@
 public class Room {
-
+/*
     public void doNarrative(int roomNumber) { // Rumnummer bestäms av en integer (roomNumber). doNarrative-metoden beskriver rummet och navigerings-möjligheterna
         int[] doors = {1, 2};
 
@@ -35,5 +35,36 @@ public class Room {
                 System.out.println("Invalid room.");
                 break;
         }
+    }
+}
+
+*/
+
+       private String name;
+    private String description;
+    private Room[] doors;  // Array av dörrar, varje dörr leder till ett annat rum
+
+    // Konstruktor för att skapa ett rum
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.doors = new Room[2];  // Ett rum har alltid två dörrar
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDoors(Room door1, Room door2) {
+        this.doors[0] = door1;
+        this.doors[1] = door2;
+    }
+
+    public Room[] getDoors() {
+        return doors;
     }
 }
