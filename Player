@@ -1,1 +1,11 @@
+public class Player {
+private String name;
+    private int healthPoints;
+    private int damage;
 
+    Player(String name, int healthPoints, int damage) {
+        this.name = name;
+        this.healthPoints = 10;
+        this.damage = 0;
+    }
+}
