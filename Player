@@ -1,7 +1,6 @@
 public class Player {
     private String name;                                                                                                     
-    private int healthPoints;                                                                                                
-                                                                                                                            
+    private int healthPoints;                                                                                                                                                                                                                        
     private //inventory som en array?                                                                                        
                                                                                                                             
     public Player(String name) {                                                                                            
@@ -10,14 +9,14 @@ public class Player {
         this.inventory                                                                                                      
     }                                                                                                                       
                                                                                                                             
-    public String getName() {                                                                                                
+    public String getName() { //genName-metod för player.                                                                                                
         return name;                                                                                                        
     }                                                                                                                       
                                                                                                                             
-    public int getHealthPoints() {                                                                                           
+    public int getHealthPoints() { //getHealthPoints-metod för player.                                                                                          
         return healthPoints;                                                                                                
                                                                                                                             
-        public void resetHealthPoints () {                                                                                  
+        public void healing () {    //metod för att återfå hälsopoäng.                                                                              
         }                                                                                                                   
         healthPoints += amount;                                                                                             
         public int getDamage () {                                                                                           
