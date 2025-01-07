@@ -1,50 +1,61 @@
 public class Player {
-  private String name;                                                                                                 
-  private int healthPoints;                                                                                            
-  private int damage;                                                                                                  
-  private int resetHealth;                                                                                             
-                                                                                                                      
-                                                                                                                      
-  Player(String name, int healthPoints, int damage, int resetHealth, Inventory) {                                      
-      this.name = name;                                                                                               
-      this.healthPoints = healthPoints;                                                                               
-      this.damage = damage;                                                                                           
-      this.resetHealth = resetHealth;                                                                                 
-  }                                                                                                                   
-  public String getName() {                                                                                            
-      this.name = name;                                                                                               
-      return name;                                                                                                    
-  }                                                                                                                   
-  public int getHealthpoints() {                                                                                       
-      this.healthPoints = 10;                                                                                         
-      return healthPoints;                                                                                            
-  }                                                                                                                   
-  public int getDamage() {                                                                                             
-      this.damage = 0;                                                                                                
-      return damage;                                                                                                  
-  }                                                                                                                   
-                                                                                                                      
-  public int takeDamage(){                                                                                             
-      if(damage > 0) {                                                                                                
-          healthPoints -= damage;                                                                                     
-          System.out.println("you have taken a damage of " + damage);                                                 
-          System.out.print("Your remaining health points is now " +healthPoints);                                     
-          return healthPoints;                                                                                        
-      }                                                                                                               
-                                                                                                                      
-  public int resetHealthPoints() {                                                                                    
-          if(resetHealth > 0){                                                                                        
-              healthPoints =+ resetHealth;                                                                            
-          if(healthPoints >= 10){                                                                                     
-              healthPoints = 10;                                                                                      
-              System.out.print("You have a maximum health of 10. ");                                                  
-                     }                                                                                                
-                  else {                                                                                              
-                      System.out.print("You have gain " + resetHealth + "health points. " + "\n" +                    
-                              "Your have now " + healthPoints + "health points. ") ;                                  
-                  }                                                                                                   
-              return healthPoints;                                                                                    
-          }                                                                                                           
-      }                                                                                                               
-  }                                                                                                                   
-                                                                                                                      
+    private String name;                                                                                                     
+    private int healthPoints;                                                                                                
+                                                                                                                            
+    private //inventory som en array?                                                                                        
+                                                                                                                            
+    public Player(String name) {                                                                                            
+        this.name = name;                                                                                                   
+        this.healthPoints = 10;                                                                                             
+        this.inventory                                                                                                      
+    }                                                                                                                       
+                                                                                                                            
+    public String getName() {                                                                                                
+        return name;                                                                                                        
+    }                                                                                                                       
+                                                                                                                            
+    public int getHealthPoints() {                                                                                           
+        return healthPoints;                                                                                                
+                                                                                                                            
+        public void resetHealthPoints () {                                                                                  
+        }                                                                                                                   
+        healthPoints += amount;                                                                                             
+        public int getDamage () {                                                                                           
+            if (healthPoints > 10) {                                                                                        
+                this.damage = 0;                                                                                            
+                healthPoints = 10; //Spelaren kan inte ha mer än 10 hälsopoäng                                              
+                System.out.print("You have a maximum health of 10. ");                                                      
+            }                                                                                                               
+        }                                                                                                                   
+    }                                                                                                                       
+                                                                                                                            
+    public void takeDamage() {                                                                                               
+        healthPoints -= damage;                                                                                             
+        if (healthPoints < 0) {                                                                                             
+            healthPoints = 0; //Hälsopoängen kan inte vara negativt tal.                                                    
+            System.out.println("you have taken a damage of " + damage);                                                     
+            System.out.print("You have now " + healthPoints + " remaining health points. ");                                
+        }                                                                                                                   
+    }                                                                                                                       
+                                                                                                                            
+    public void addItem(Item item) {                                                                                         
+    } // metod för att lägga till items till inventory.                                                                     
+    // döp om parametrar? hur ser itemklassen ut?                                                                           
+                                                                                                                            
+    public boolean isArmed() {                                                                                               
+        for () { //hur ser item ut? arrayen till inventory och item?                                                        
+            if (item instanceof sword) {  //till exempel                                                                    
+                return true;   //är beväpnad med svärd.                                                                     
+            }                                                                                                               
+        }                                                                                                                   
+        return false;    //är inte beväpnad med svärd.                                                                      
+    }                                                                                                                       
+                                                                                                                            
+    public void fight() { //metod för att slåss mot monster.                                                                 
+        int damage = isArmed() ? 3 : 1; // Om spelaren har ett svärd, gör 3 i skada.                                        
+        //om spelaren inte har ett svärd, gör 1 i skada.                                                                    
+        monster.takeDamage(damage);  //exempel. Hur ser monsterklassen ut?                                                  
+        System.out.print("Watch out! You are fighting a " + monster.getName() + " ." + "\n" +                               
+                " You have given the " + monster.getName() + damage + "amount of damage. ") //hur ser monsterklass ut?      
+    }                                                                                                                       
+}                                                                                                                                                                                                                                   
