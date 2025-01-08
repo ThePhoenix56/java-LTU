@@ -1,3 +1,17 @@
-public class item [
-          private string name;
-       
+public abstract class Item {
+    private String name;
+
+    // Konstruktor
+    public Item(String name) {
+        this.name = name;
+    }
+
+    // Getter
+    public String getName() {
+        return name;
+    }
+
+    // Abstrakt metod som alla subklasser måste implementera
+    public abstract void use();
+}
+
