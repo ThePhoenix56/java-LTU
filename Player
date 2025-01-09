@@ -7,7 +7,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.healthPoints = 10;
+        this.healthPoints = 10;//Spelaren har från spelets start 10 hälsopoäng.
         this.inventory = new Item[5] //Inventory rymmer fem föremål.
         this.inventorySize = 0; //När spelet börjar har spelaren ett tomt inventory.
     }
