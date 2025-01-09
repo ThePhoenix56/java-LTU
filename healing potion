@@ -1,0 +1,17 @@
+public class HealingPotion extends Item {
+    private int healingAmount;
+
+    public HealingPotion(String name, int healingAmount) {
+        super(name);
+        this.healingAmount = healingAmount;
+    }
+
+    @Override
+    public void use() {
+        System.out.println("Hälsopotion används och helar " + healingAmount + " hälsopoäng.");
+    }
+
+    public int getHealingAmount() {
+        return healingAmount;
+    }
+}
