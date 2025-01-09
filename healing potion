@@ -1,6 +1,6 @@
 public class HealingPotion extends Item {
     private int healingAmount;
-
+// healingpotion får sin mängd som den healar 
     public HealingPotion(String name, int healingAmount) {
         super(name);
         this.healingAmount = healingAmount;
