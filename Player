@@ -33,8 +33,9 @@ public class Player {
 
     public void takeDamage() {
         healthPoints -= damage;
-        if (healthPoints < 0) {
+        if (healthPoints <= 0) {
             healthPoints = 0; //Hälsopoängen kan inte vara negativt tal.
+            System.out.print("You have died. Game over.")
         }
             System.out.println("you have taken a damage of " + damage);
             System.out.print("You have now " + healthPoints + " remaining health points. ");
