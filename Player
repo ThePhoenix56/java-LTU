@@ -68,7 +68,7 @@ public class Player {
         int damage = isArmed() ? 2 : 1; // Om spelaren har ett svärd, gör 2 i skada.
         //om spelaren inte har ett svärd, gör 1 i skada.
         monster.takeDamage(damage);  //exempel. Hur ser monsterklassen ut?
-        System.out.print("Watch out! You are fighting a " + monster.getName() + " ." + "\n" +
+        System.out.print("Watch out! You are fighting a " + monster.getName() + "." + "\n" +
                 " You have given the " + monster.getName() + damage + "amount of damage. "); //hur ser monsterklass ut?
     }
 }                                                                                                                                                                                                                   
