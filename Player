@@ -1,60 +1,74 @@
 public class Player {
-    private String name;                                                                                                     
-    private int healthPoints;                                                                                                                                                                                                                        
-    private //inventory som en array?                                                                                        
-                                                                                                                            
-    public Player(String name) {                                                                                            
-        this.name = name;                                                                                                   
-        this.healthPoints = 10;                                                                                             
-        this.inventory                                                                                                      
-    }                                                                                                                       
-                                                                                                                            
-    public String getName() { //genName-metod för player.                                                                                                
-        return name;                                                                                                        
-    }                                                                                                                       
-                                                                                                                            
-    public int getHealthPoints() { //getHealthPoints-metod för player.                                                                                          
-        return healthPoints;                                                                                                
-                                                                                                                            
-        public void healing () {    //metod för att återfå hälsopoäng.                                                                              
-        }                                                                                                                   
-        healthPoints += amount;                                                                                             
-        public int getDamage () {                                                                                           
-            if (healthPoints > 10) {                                                                                        
-                this.damage = 0;                                                                                            
-                healthPoints = 10; //Spelaren kan inte ha mer än 10 hälsopoäng                                              
-                System.out.print("You have a maximum health of 10. ");                                                      
-            }                                                                                                               
-        }                                                                                                                   
-    }                                                                                                                       
-                                                                                                                            
-    public void takeDamage() {                                                                                               
-        healthPoints -= damage;                                                                                             
-        if (healthPoints < 0) {                                                                                             
-            healthPoints = 0; //Hälsopoängen kan inte vara negativt tal.                                                    
-            System.out.println("you have taken a damage of " + damage);                                                     
-            System.out.print("You have now " + healthPoints + " remaining health points. ");                                
-        }                                                                                                                   
-    }                                                                                                                       
-                                                                                                                            
-    public void addItem(Item item) {                                                                                         
-    } // metod för att lägga till items till inventory.                                                                     
-    // döp om parametrar? hur ser itemklassen ut?                                                                           
-                                                                                                                            
-    public boolean isArmed() {                                                                                               
-        for () { //hur ser item ut? arrayen till inventory och item?                                                        
-            if (item instanceof sword) {  //till exempel                                                                    
-                return true;   //är beväpnad med svärd.                                                                     
-            }                                                                                                               
-        }                                                                                                                   
-        return false;    //är inte beväpnad med svärd.                                                                      
-    }                                                                                                                       
-                                                                                                                            
-    public void fight() { //metod för att slåss mot monster.                                                                 
-        int damage = isArmed() ? 3 : 1; // Om spelaren har ett svärd, gör 3 i skada.                                        
-        //om spelaren inte har ett svärd, gör 1 i skada.                                                                    
-        monster.takeDamage(damage);  //exempel. Hur ser monsterklassen ut?                                                  
-        System.out.print("Watch out! You are fighting a " + monster.getName() + " ." + "\n" +                               
-                " You have given the " + monster.getName() + damage + "amount of damage. ") //hur ser monsterklass ut?      
-    }                                                                                                                       
-}                                                                                                                                                                                                                                   
+    private String name;
+    private int healthPoints;
+    private Item[] inventory;//inventory som en array.
+    private int inventorySize;
+
+
+    public Player(String name) {
+        this.name = name;
+        this.healthPoints = 10;
+        this.inventory = new Item[5] //Inventory rymmer fem föremål.
+        this.inventorySize = 0; //När spelet börjar har spelaren ett tomt inventory.
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+
+        public void heailng() {   //metod för att återfå hälsopoäng.
+        }
+        healthPoints += healingAamount;
+        public int getDamage () {
+            if (healthPoints > 10) {
+                this.damage = 0;
+                healthPoints = 10; //Spelaren kan inte ha mer än 10 hälsopoäng                                                                         return damage;
+                System.out.print("You have a maximum health of 10. ");
+            }
+        }
+    }
+
+    public void takeDamage() {
+        healthPoints -= damage;
+        if (healthPoints < 0) {
+            healthPoints = 0; //Hälsopoängen kan inte vara negativt tal.
+        }
+            System.out.println("you have taken a damage of " + damage);
+            System.out.print("You have now " + healthPoints + " remaining health points. ");
+    }
+
+    // metod för att lägga till items till inventory.
+    // döp om parametrar? hur ser itemklassen ut?
+    public void addItem(Item item) {
+        if (inventorySize < inventory.length){ //Om det finns plats i inventory kan föremål läggas till.
+            inventory[inventorySize] = item;
+            inventorySize++; //programmet registrerar att spelaren nu bär på ett till föremål.
+            System.out.print("You have added " + item.getName() + " to you inventory. ");
+    }
+        else {
+            System.out.print("Your inventory is already full. " + "\n" +
+                    "Cannot add " + item.getName() + " to your inventory. ");
+        }
+    }
+
+    public boolean isArmed() {
+        //Kontrollerar om player har ett vapen i inventory.
+        for (int i = 0; i < inventorySize; i++) {
+            if (inventory[i].getName().equals("sword")) {
+                return true;   //är beväpnad med svärd.
+            }
+        }
+        return false;    //är inte beväpnad med svärd.
+    }
+
+    public void fight() { //metod för att slåss mot monster.
+        int damage = isArmed() ? 2 : 1; // Om spelaren har ett svärd, gör 2 i skada.
+        //om spelaren inte har ett svärd, gör 1 i skada.
+        monster.takeDamage(damage);  //exempel. Hur ser monsterklassen ut?
+        System.out.print("Watch out! You are fighting a " + monster.getName() + " ." + "\n" +
+                " You have given the " + monster.getName() + damage + "amount of damage. "); //hur ser monsterklass ut?
+    }
+}                                                                                                                                                                                                                   
