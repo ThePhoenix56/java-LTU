@@ -42,7 +42,6 @@ public class Player {
     }
 
     // metod för att lägga till items till inventory.
-    // döp om parametrar? hur ser itemklassen ut?
     public void addItem(Item item) {
         if (inventorySize < inventory.length){ //Om det finns plats i inventory kan föremål läggas till.
             inventory[inventorySize] = item;
