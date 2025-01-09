@@ -19,7 +19,7 @@ public class Player {
     public int getHealthPoints() {
         return healthPoints;
 
-        public void heailng() {   //metod för att återfå hälsopoäng.
+        public void healing() {   //metod för att återfå hälsopoäng.
         }
         healthPoints += healingAamount;
         public int getDamage () {
