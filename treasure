@@ -1,6 +1,8 @@
 public class Treasure extends Item {
     private int value;
 
+//skapar skattens värde
+
     public Treasure(String name, int value) {
         super(name);
         this.value = value;
