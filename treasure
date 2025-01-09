@@ -1,0 +1,17 @@
+public class Treasure extends Item {
+    private int value;
+
+    public Treasure(String name, int value) {
+        super(name);
+        this.value = value;
+    }
+
+    @Override
+    public void use() {
+        System.out.println("Skatt används och är värd " + value + " guld.");
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
