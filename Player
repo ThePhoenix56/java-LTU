@@ -2,7 +2,7 @@ public class Player {
     private String name;
     private int healthPoints;
     private Item[] inventory;//inventory som en array.
-    private int inventorySize;
+    private int inventorySize;//instansvariabel för storleken på spelarens inventory
 
 
     public Player(String name) {
