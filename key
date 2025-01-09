@@ -1,0 +1,10 @@
+public class Key extends Item {
+    public Key(String name) {
+        super(name);
+    }
+
+    @Override
+    public void use() {
+        System.out.println("Nyckeln används för att öppna en låst dörr.");
+    }
+}
