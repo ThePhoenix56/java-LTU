@@ -1,63 +1,56 @@
 public class Dungeon {
+    private Room[][] rooms; // array som hanterar de olika rummen som finns i dongeon
+    private int currentRoomX; // Spelarens position i x-led
+    private int currentRoomY; // Spelarens position i y-led
+    private Player player; // Referens till spelaren
 
-    /* // Initierar rummen
-    int[][] rooms = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
-
-    public void playGame() {
-        Room room = new Room(); // Skapar en instance av "Room"
-        room.doNarrative(1); // Nummer 1 används som ett exempel här. Det skickar den över till metoden "doNarrative"
-    }
-
-    public static void main(String[] args) {
-        Dungeon dungeon = new Dungeon();
-        dungeon.playGame(); // Kallar metoden "playGame" som gör att spelet börjar
-    }
-}
-*/ 
-
-    private Room[][] rooms;  // array som hanterar de olika rummen som finns i dongeon.
-    private int currentRoomX; // Spelarens position i x-led.
-    private int currentRoomY; // Spelarens position i y-led.
-
-    // Konstruktor för att skapa dungeons rummen
     public Dungeon() {
-        rooms = new Room[2][2];  // 2x2 = 4 rum.
-        currentRoomX = 0;  // Startar på rum som motsvarar kortinaterna (0,0).
+        rooms = new Room[2][2]; // 2x2 = 4 rum
+        currentRoomX = 0; // Startar på rum som motsvarar kortinaterna (0,0)
         currentRoomY = 0;
+        player = new Player("Adventurer"); // Skapar en ny spelare
 
-        // Skapa rummen med namn och beskrivningar.
-        rooms[0][0] = new Room("cave", "You stand in a large cave and a bat flies by." + "\n" +
-                "It is dark and cold and you cannot see very well." +
-                "\n");
-        rooms[0][1] = new Room("spooky torches", "In this room, four torches hang from the walls." + "\n" +
-        "The light is warm." +
-                "\n");
-        rooms[1][0] = new Room("tunel","You have come to a narrow tunnel." +"\n" +
-                "There is water on the floor that reaches your knees." +
-                "\n" );
-        rooms[1][1] = new Room("treasury", "You come in and see a chest with a golden light through the keyhole." +
-                "\n" );
+        // Skapa rummen med namn och beskrivningar
+        rooms[0][0] = new Room("cave", "You stand in a large cave and a bat flies by.\nIt is dark and cold.");
+        rooms[0][1] = new Room("spooky torches", "In this room, four torches hang from the walls. The light is warm.");
+        rooms[1][0] = new Room("tunnel", "You have come to a narrow tunnel. Water reaches your knees.");
+        rooms[1][1] = new Room("treasury", "You see a chest glowing with golden light through the keyhole.");
 
-        // hur rummen länkas med dörrar.
+        // Lägg till monster i rummen
+        rooms[0][1].addMonster(new Goblin());
+        rooms[1][0].addMonster(new Dragon());
+
+        // Hur rummen länkas med dörrar
         rooms[0][0].setDoors(rooms[0][1], rooms[1][0]);
         rooms[0][1].setDoors(rooms[0][0], rooms[1][1]);
         rooms[1][0].setDoors(rooms[0][0], rooms[1][1]);
         rooms[1][1].setDoors(rooms[0][1], rooms[1][0]);
     }
 
-    // Metod som hanterar navigering mellan rum.
     public void doNarrative() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            // skriver ut rumsbeskrivning för vars spelaren befinner sig.
             Room currentRoom = rooms[currentRoomX][currentRoomY];
 
+            // Skriv ut beskrivning av rummet
             System.out.println(currentRoom.getDescription());
 
-            // Fråga spelaren om vilken dörr de vill gå igenom.
-            Room[] doors = currentRoom.getDoors();
+            // Kontrollera om det finns monster i rummet
+            if (currentRoom.hasMonsters()) {
+                for (Monster monster : currentRoom.getMonsters()) {
+                    System.out.println("A " + monster.getName() + " is here!");
+                    monster.attack(player); // Monster attackerar spelaren
+                    player.fight(monster); // Spelaren kan slåss
+                    if (monster.getHealthPoints() <= 0) {
+                        currentRoom.getMonsters().remove(monster);
+                        break;
+                    }
+                }
+            }
 
+            // Visa tillgängliga dörrar
+            Room[] doors = currentRoom.getDoors();
             if (doors[0] != null) {
                 System.out.println("Press 1 to enter " + doors[0].getName());
             }
@@ -66,26 +59,23 @@ public class Dungeon {
             }
 
             int choice = scanner.nextInt();
-
-            // Hantering av spelarens inmatningar.
             if (choice == 1 && doors[0] != null) {
                 moveToRoom(doors[0]);
             } else if (choice == 2 && doors[1] != null) {
                 moveToRoom(doors[1]);
             } else {
-                System.out.println("Press 1 och 2 to enter another room.");
+                System.out.println("Invalid choice. Try again.");
             }
         }
     }
 
-    // Metod för att gå till ett annat rum.
     private void moveToRoom(Room nextRoom) {
         for (int x = 0; x < rooms.length; x++) {
             for (int y = 0; y < rooms[x].length; y++) {
                 if (rooms[x][y] == nextRoom) {
                     currentRoomX = x;
                     currentRoomY = y;
-                    System.out.println("You´ve entered " + nextRoom.getName() + ".\n");
+                    System.out.println("You enter " + nextRoom.getName() + ".");
                     return;
                 }
             }
@@ -94,6 +84,6 @@ public class Dungeon {
 
     public static void main(String[] args) {
         Dungeon dungeon = new Dungeon();
-        dungeon.doNarrative();  // Startar programmet.
+        dungeon.doNarrative(); // Startar spelet
     }
 }
